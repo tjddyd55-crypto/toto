@@ -1,5 +1,6 @@
 const { chromium } = require("playwright");
 const fs = require("fs");
+const { getParserMeta, normalizeParserKey } = require("./parsers");
 
 let allMatches = [];
 
@@ -30,6 +31,20 @@ async function autoScrollAll(page) {
 
 function cleanText(value) {
   return String(value || "").trim();
+}
+
+function resolveSiteName(targetUrl, siteConfig) {
+  if (siteConfig && siteConfig.name) {
+    return String(siteConfig.name).trim();
+  }
+  if (siteConfig && siteConfig.id) {
+    return String(siteConfig.id).trim();
+  }
+  try {
+    return new URL(targetUrl).hostname || "unknown-site";
+  } catch (_) {
+    return "unknown-site";
+  }
 }
 
 function parseMatchesFromText(text) {
@@ -130,11 +145,16 @@ function parseMatchesFromText(text) {
   return matches;
 }
 
-async function inspectUrl(targetUrl) {
+async function inspectUrl(targetUrl, siteConfig = {}) {
   const browser = await chromium.launch({
     headless: true,
   });
   const page = await browser.newPage();
+  const parserKey = normalizeParserKey(siteConfig?.collector?.parserKey || siteConfig?.parserKey);
+  const parserMeta = getParserMeta(parserKey);
+  const siteName = resolveSiteName(targetUrl, siteConfig);
+  const repeatCount = Number(siteConfig?.collector?.repeatCount) > 0 ? Number(siteConfig.collector.repeatCount) : 5;
+  const waitMs = Number(siteConfig?.collector?.waitMs) > 0 ? Number(siteConfig.collector.waitMs) : 1000;
 
   try {
     await page.goto(targetUrl, {
@@ -145,17 +165,17 @@ async function inspectUrl(targetUrl) {
     await page.waitForTimeout(2000);
 
     await page.mouse.wheel(0, 2000);
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(waitMs);
 
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < repeatCount; i += 1) {
       await autoScrollAll(page);
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(waitMs);
     }
 
     const title = await page.title();
     allMatches = [];
 
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < repeatCount; i += 1) {
       const text = await page.innerText("body");
       const matches = parseMatchesFromText(text);
 
@@ -163,7 +183,7 @@ async function inspectUrl(targetUrl) {
 
       allMatches = [...allMatches, ...matches];
 
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(waitMs);
     }
 
     const unique = {};
@@ -180,7 +200,8 @@ async function inspectUrl(targetUrl) {
     allMatches = allMatches.filter((match) => match.odds && match.odds.length === 3);
 
     const finalMatches = allMatches.map((match) => ({
-      site: "x10x10",
+      site: siteName,
+      parserKey,
       time: match.time,
       league: match.league || "",
       home: match.home,
@@ -191,7 +212,7 @@ async function inspectUrl(targetUrl) {
     console.log("FINAL COUNT:", finalMatches.length);
 
     fs.writeFileSync(
-      "matches_x10x10.json",
+      `matches_${siteName.replace(/[^a-z0-9가-힣_-]/gi, "_")}.json`,
       JSON.stringify(finalMatches, null, 2)
     );
 
@@ -204,9 +225,14 @@ async function inspectUrl(targetUrl) {
       success: true,
       count: finalMatches.length,
       matches: finalMatches,
+      parserKey,
+      parserMeta,
+      siteName,
       pageInfo: {
         url: targetUrl,
         title,
+        siteName,
+        parserKey,
       },
       html: "",
       bodyText: "",
