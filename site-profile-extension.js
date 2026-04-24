@@ -11,7 +11,15 @@
       .trim()
       .toLowerCase()
       .replace(/[^a-z0-9가-힣_-]+/g, "_")
-      .replace(/^_+|_+$/g, "") || `site_${Date.now()}`;
+      .replace(/^_+|_+$/g, "") || "site";
+  }
+
+  function stableConfigId(config) {
+    return `site_${safeId(config.name || config.url || "site")}`;
+  }
+
+  function dedupeKey(config) {
+    return `${String(config.url || "").trim().toLowerCase()}::${String(config.name || "").trim().toLowerCase()}`;
   }
 
   function readConfigs() {
@@ -45,7 +53,9 @@
 
   function normalizeSiteConfig(config) {
     const createdAt = config.createdAt || nowIso();
-    const id = config.id || `site_${safeId(config.name || config.url)}_${createdAt.replace(/[^0-9]/g, "").slice(0, 14)}`;
+    const id = config.id && !String(config.id).match(/_\d{14}$/)
+      ? config.id
+      : stableConfigId(config);
     const parserKey = config.collector?.parserKey || config.parserKey || DEFAULT_PARSER_KEY;
 
     return {
@@ -86,8 +96,37 @@
     };
   }
 
+  function mergeConfig(existing, incoming) {
+    const a = normalizeSiteConfig(existing || {});
+    const b = normalizeSiteConfig(incoming || {});
+    const aCount = Number(a.lastValidation?.matchCount || 0);
+    const bCount = Number(b.lastValidation?.matchCount || 0);
+    const betterValidation = bCount >= aCount ? b.lastValidation : a.lastValidation;
+    return normalizeSiteConfig({
+      ...a,
+      ...b,
+      id: a.id || b.id,
+      collector: { ...a.collector, ...b.collector },
+      api: { ...a.api, ...b.api },
+      filters: { ...a.filters, ...b.filters },
+      lastValidation: betterValidation,
+      createdAt: a.createdAt || b.createdAt,
+      updatedAt: nowIso(),
+    });
+  }
+
   function migrateSiteConfigs() {
-    const migrated = readConfigs().map(normalizeSiteConfig);
+    const byKey = new Map();
+    for (const raw of readConfigs()) {
+      const normalized = normalizeSiteConfig(raw);
+      const key = dedupeKey(normalized) || normalized.id;
+      if (byKey.has(key)) {
+        byKey.set(key, mergeConfig(byKey.get(key), normalized));
+      } else {
+        byKey.set(key, normalized);
+      }
+    }
+    const migrated = Array.from(byKey.values());
     writeConfigs(migrated);
     return migrated;
   }
@@ -95,17 +134,21 @@
   function upsertSiteConfig(config) {
     const normalized = normalizeSiteConfig({ ...config, updatedAt: nowIso() });
     const configs = migrateSiteConfigs();
-    const index = configs.findIndex((item) => item.id === normalized.id);
-    if (index >= 0) configs[index] = normalized;
+    const key = dedupeKey(normalized);
+    const index = configs.findIndex((item) => item.id === normalized.id || dedupeKey(item) === key);
+    if (index >= 0) configs[index] = mergeConfig(configs[index], normalized);
     else configs.push(normalized);
     writeConfigs(configs);
-    return normalized;
+    const saved = index >= 0 ? configs[index] : normalized;
+    window.__currentSiteProfileId = saved.id;
+    return saved;
   }
 
   function findCurrentConfig() {
     const currentId = window.__currentSiteProfileId;
+    const configs = migrateSiteConfigs();
     if (!currentId) return null;
-    return migrateSiteConfigs().find((item) => item.id === currentId) || null;
+    return configs.find((item) => item.id === currentId) || null;
   }
 
   function buildCurrentSiteConfig(existingConfig) {
@@ -118,6 +161,7 @@
 
     return normalizeSiteConfig({
       ...base,
+      id: base.id || stableConfigId({ name, url }),
       name,
       url,
       collector: {
@@ -292,7 +336,9 @@
       deleteBtn.type = "button";
       deleteBtn.textContent = "삭제";
       deleteBtn.addEventListener("click", () => {
-        writeConfigs(migrateSiteConfigs().filter((item) => item.id !== config.id));
+        const key = dedupeKey(config);
+        writeConfigs(migrateSiteConfigs().filter((item) => item.id !== config.id && dedupeKey(item) !== key));
+        if (window.__currentSiteProfileId === config.id) window.__currentSiteProfileId = null;
         renderProfilesList();
       });
 
@@ -313,9 +359,9 @@
         message: result && Number(result.count || 0) > 0 ? "정상 추출" : "추출 결과 없음",
       },
     });
-    upsertSiteConfig(updated);
+    const saved = upsertSiteConfig(updated);
     renderProfilesList();
-    return updated;
+    return saved;
   }
 
   function patchInspectApi() {
@@ -342,11 +388,13 @@
     const saveBtn = getEl("saveSiteBtn");
     if (saveBtn && !saveBtn.dataset.profileExt) {
       saveBtn.dataset.profileExt = "1";
-      saveBtn.addEventListener("click", () => {
+      saveBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopImmediatePropagation();
         const saved = upsertSiteConfig(buildCurrentSiteConfig());
         applyConfigToInputs(saved);
         renderProfilesList();
-      });
+      }, true);
     }
 
     const menuSavedSites = getEl("menuSavedSites");
