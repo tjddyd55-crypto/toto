@@ -1,0 +1,51 @@
+{
+  "name": "toto-electron-crawler",
+  "version": "1.0.1",
+  "description": "Toto desktop crawler",
+  "author": "toto",
+  "main": "main.js",
+  "scripts": {
+    "dev": "nodemon --exec electron .",
+    "dev:fast": "npx electronmon .",
+    "start": "electron .",
+    "dist": "electron-builder --win nsis",
+    "pack": "electron-builder --dir"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.3",
+    "playwright": "^1.52.0"
+  },
+  "devDependencies": {
+    "electron": "^41.3.0",
+    "electron-builder": "latest",
+    "nodemon": "^3.1.14"
+  },
+  "build": {
+    "appId": "com.toto.crawler",
+    "productName": "TotoCrawler",
+    "artifactName": "${productName}-Setup-${version}.${ext}",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**"
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "https://example.com/toto-updates/"
+      }
+    ]
+  }
+}

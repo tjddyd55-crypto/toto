@@ -1,0 +1,1202 @@
+[
+  {
+    "site": "x10x10",
+    "time": "04:15",
+    "league": "",
+    "home": "발루르 레이캬비크 FC",
+    "away": "FH 하프나르피외르뒤르",
+    "odds": [
+      2.47,
+      3.71,
+      2.59
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "04:15",
+    "league": "",
+    "home": "비킹구르 레이캬비크",
+    "away": "스탸르난 FC",
+    "odds": [
+      1.47,
+      4.8,
+      5.7
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "04:30",
+    "league": "",
+    "home": "CA Chaco For Ever (Reserves)",
+    "away": "CA Villa Alvear",
+    "odds": [
+      2.44,
+      3.17,
+      2.99
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "04:30",
+    "league": "",
+    "home": "레알 오비에도",
+    "away": "비야레알 CF",
+    "odds": [
+      3.41,
+      3.4,
+      2.29
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "04:45",
+    "league": "포르투갈, 포르투갈 컵",
+    "home": "SCU 토렌세",
+    "away": "AD 파페",
+    "odds": [
+      1.67,
+      3.74,
+      5.1
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "05:00",
+    "league": "",
+    "home": "비토리아 사우바도르 U20",
+    "away": "RB 브라간치누 U20",
+    "odds": [
+      20,
+      20,
+      2.74
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "05:00",
+    "league": "",
+    "home": "CD Real Santander (Wom)",
+    "away": "아메리카 데 칼리 (여자)",
+    "odds": [
+      10,
+      5.2,
+      1.3
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "05:00",
+    "league": "",
+    "home": "CD 로스 찬카스",
+    "away": "시엔시아노 델 쿠스코",
+    "odds": [
+      2.38,
+      3.47,
+      2.84
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "05:30",
+    "league": "",
+    "home": "데포르티보 칼리 (여자)",
+    "away": "주니어 바란퀼리아 (여자)",
+    "odds": [
+      1.21,
+      6,
+      15
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "05:30",
+    "league": "자메이카, 내셔널 프리미어 리그",
+    "home": "덤보홀덴 FC",
+    "away": "하버 뷰",
+    "odds": [
+      2.43,
+      3.14,
+      3.03
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "06:00",
+    "league": "아르헨티나, 리저브 리그",
+    "home": "CA 타예레스 데 코르도바 (리저브)",
+    "away": "CA 벨그라노 코르도바 (리저브)",
+    "odds": [
+      2.17,
+      3.25,
+      3.45
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "06:00",
+    "league": "아르헨티나, 리저브 리그",
+    "home": "Gimnasia y Esgrima de Mendoza (Reserves)",
+    "away": "인디펜디엔테 리바다비아 (리저브)",
+    "odds": [
+      2.42,
+      3.26,
+      2.95
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "06:00",
+    "league": "",
+    "home": "Internacional de Palmira (Wom)",
+    "away": "포르탈레자 CEIF (여자)",
+    "odds": [
+      1.54,
+      3.92,
+      6.4
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "06:00",
+    "league": "파나마, Liga Prom",
+    "home": "Chorrillo FC",
+    "away": "타우로 FC (리저브)",
+    "odds": [
+      3.17,
+      3.9,
+      2.05
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "07:00",
+    "league": "",
+    "home": "아틀레치쿠 미네이루",
+    "away": "세아라",
+    "odds": [
+      1.65,
+      3.71,
+      5.5
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "07:00",
+    "league": "",
+    "home": "이투아노 FC",
+    "away": "Ferroviaria Araraquara SP",
+    "odds": [
+      3.28,
+      2.29,
+      3.14
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "07:00",
+    "league": "",
+    "home": "리오 브랑코 AC ES",
+    "away": "Rio Branco VN",
+    "odds": [
+      1.67,
+      3.58,
+      5.5
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "07:00",
+    "league": "",
+    "home": "미라솔 FC U20",
+    "away": "세아라 U20",
+    "odds": [
+      20,
+      20,
+      2.43
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "07:00",
+    "league": "",
+    "home": "Inter Playa del Carmen",
+    "away": "Real Apodaca FC",
+    "odds": [
+      2.33,
+      3.09,
+      3.26
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "07:30",
+    "league": "",
+    "home": "SE 파우메이라스",
+    "away": "EC 자쿠이펜세 BA",
+    "odds": [
+      1.06,
+      14,
+      23
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "08:00",
+    "league": "",
+    "home": "CSD 데펜사 이 후스티시아",
+    "away": "보카 주니어스",
+    "odds": [
+      3.08,
+      2.9,
+      2.56
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "08:00",
+    "league": "",
+    "home": "데포르티보 파스토",
+    "away": "인디펜디엔테 산타 페",
+    "odds": [
+      2.24,
+      2.91,
+      3.71
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "08:00",
+    "league": "에콰도르, 컵",
+    "home": "데포르티보 키토",
+    "away": "구알라세오 SC",
+    "odds": [
+      2.68,
+      3.37,
+      2.56
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "08:00",
+    "league": "",
+    "home": "아틀란테 FC",
+    "away": "CD 테파티틀란",
+    "odds": [
+      1.53,
+      4.2,
+      6
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "08:15",
+    "league": "",
+    "home": "Lobos UPNFM",
+    "away": "Genesis Huracan",
+    "odds": [
+      210,
+      9,
+      0
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "09:00",
+    "league": "",
+    "home": "CD 리얼 토마야포",
+    "away": "더 스트롱기스트",
+    "odds": [
+      4.1,
+      4.3,
+      1.73
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "09:00",
+    "league": "",
+    "home": "CD 팔레스티노",
+    "away": "D. Concepcion",
+    "odds": [
+      1.7,
+      3.71,
+      5
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "09:00",
+    "league": "",
+    "home": "CD Universidad Catolica Quito",
+    "away": "CSD 마카라",
+    "odds": [
+      1.71,
+      3.55,
+      5.2
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "09:00",
+    "league": "자메이카, 내셔널 프리미어 리그",
+    "home": "마운트 플레즌트 FA",
+    "away": "Chapelton Maroons FC",
+    "odds": [
+      1.36,
+      4.9,
+      8.4
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "09:00",
+    "league": "자메이카, 내셔널 프리미어 리그",
+    "home": "워터하우스 FC",
+    "away": "Treasure Beach FC",
+    "odds": [
+      1.48,
+      4.3,
+      6.6
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "09:00",
+    "league": "자메이카, 내셔널 프리미어 리그",
+    "home": "아네트 가든스 FC",
+    "away": "카바리어 SC",
+    "odds": [
+      2.48,
+      3.21,
+      2.89
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "09:30",
+    "league": "",
+    "home": "CA 파라나엔세",
+    "away": "아틀레치쿠 고이아니엔시",
+    "odds": [
+      1.45,
+      4.2,
+      7.8
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "09:30",
+    "league": "",
+    "home": "오페라리우 페호비아리우 EC",
+    "away": "플루미넨시",
+    "odds": [
+      5.5,
+      3.55,
+      1.67
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "10:00",
+    "league": "",
+    "home": "밀로나리오스 FC",
+    "away": "데포르테스 톨리마",
+    "odds": [
+      1.61,
+      3.77,
+      5.7
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "10:00",
+    "league": "",
+    "home": "CD 타파티오",
+    "away": "칸쿤 FC",
+    "odds": [
+      1.89,
+      3.67,
+      3.86
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "10:30",
+    "league": "",
+    "home": "Olancho FC",
+    "away": "CD 모타구아",
+    "odds": [
+      2.39,
+      3.19,
+      3.04
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "11:00",
+    "league": "",
+    "home": "Alajuelense",
+    "away": "Puntarenas",
+    "odds": [
+      1.59,
+      3.55,
+      6.8
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "16:00",
+    "league": "중국, 리그2",
+    "home": "Dalian Yingbo FC B",
+    "away": "Changchun Xidu",
+    "odds": [
+      1.83,
+      3.14,
+      4.8
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "16:30",
+    "league": "",
+    "home": "Canberra White Eagles FC U23",
+    "away": "투게라농 유나이티드 FC U23",
+    "odds": [
+      23,
+      23,
+      2
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "16:30",
+    "league": "중국, 리그2",
+    "home": "Shanghai Segenda",
+    "away": "Dalian Kewei",
+    "odds": [
+      3.74,
+      3.82,
+      1.83
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "17:30",
+    "league": "호주, U23 퀸슬랜드 프리미어 리그 1",
+    "home": "카팔라바 FC U23",
+    "away": "노스 스타 FC U23",
+    "odds": [
+      23,
+      23,
+      2
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "17:30",
+    "league": "인도네시아, 슈퍼리그",
+    "home": "페르시잡 제파라",
+    "away": "PSBS 비악 넘포",
+    "odds": [
+      1.2,
+      6.8,
+      11
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "18:30",
+    "league": "",
+    "home": "올림픽 FC",
+    "away": "매직 유나이티드 TFA",
+    "odds": [
+      1.35,
+      5.4,
+      6.8
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "18:30",
+    "league": "",
+    "home": "하이델베르크 유나이티드",
+    "away": "애본데일 하이츠 FC",
+    "odds": [
+      2.15,
+      3.62,
+      3
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "18:30",
+    "league": "",
+    "home": "그린 길리 SC",
+    "away": "프레스턴 라이온스 FC",
+    "odds": [
+      4,
+      3.83,
+      1.77
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "18:30",
+    "league": "",
+    "home": "박스 힐 유나이티드 SC (여자)",
+    "away": "FC 불린 라이온즈 (여자)",
+    "odds": [
+      3.4,
+      3.67,
+      1.97
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "18:30",
+    "league": "",
+    "home": "사우스 멜버른 FC (여자)",
+    "away": "애본데일 하이츠 FC (여자)",
+    "odds": [
+      1.47,
+      4.4,
+      5.8
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "18:30",
+    "league": "",
+    "home": "시드니 FC (Youth)",
+    "away": "선더랜드 샤크스",
+    "odds": [
+      3.11,
+      3.6,
+      2.1
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "18:30",
+    "league": "",
+    "home": "브룬스윅 시티 SC",
+    "away": "랭워린 SC",
+    "odds": [
+      1.98,
+      4.1,
+      3.1
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "18:35",
+    "league": "호주, A-리그",
+    "home": "맥아서 FC",
+    "away": "웰링턴 피닉스",
+    "odds": [
+      1.94,
+      4.1,
+      3.2
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "18:45",
+    "league": "",
+    "home": "단데농 시티 SC",
+    "away": "단데농 썬더 SC",
+    "odds": [
+      2.48,
+      3.64,
+      2.52
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:00",
+    "league": "",
+    "home": "St 앨번스 세인츠 SC",
+    "away": "사우스 멜버른 FC",
+    "odds": [
+      3.51,
+      4.4,
+      1.78
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:00",
+    "league": "",
+    "home": "램턴 쟈파스 FC",
+    "away": "쿡스 힐 유나이티드",
+    "odds": [
+      1.56,
+      4.6,
+      4.6
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:00",
+    "league": "",
+    "home": "브로드메도우 매직",
+    "away": "마이틀랜드 FC",
+    "odds": [
+      1.72,
+      4.33,
+      3.77
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:00",
+    "league": "체코, U19 리그",
+    "home": "FC Zlin U19",
+    "away": "FK 파르두비체 U19",
+    "odds": [
+      19,
+      19,
+      0
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:00",
+    "league": "J1 League 2026 vs",
+    "home": "J1 League 2026",
+    "away": "",
+    "odds": [
+      1,
+      2026,
+      1
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:00",
+    "league": "일본, J. League 100 Year Vision League",
+    "home": "가시와 레이솔",
+    "away": "가시마 앤틀러스",
+    "odds": [
+      2.2,
+      3.21,
+      3.21
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:00",
+    "league": "일본, J. League 100 Year Vision League",
+    "home": "FC 도쿄",
+    "away": "미토 홀리호크",
+    "odds": [
+      1.71,
+      3.53,
+      4.9
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:00",
+    "league": "대한민국, WK-리그",
+    "home": "서울 시청 (여자)",
+    "away": "창녕 WFC (여자)",
+    "odds": [
+      1.41,
+      4.75,
+      6.4
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:00",
+    "league": "대한민국, WK-리그",
+    "home": "화천 KSPO (여자)",
+    "away": "Incheon Hyundai Steel Red Angels (Wom)",
+    "odds": [
+      2.25,
+      3.21,
+      3.14
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:00",
+    "league": "베트남, V - 리그",
+    "home": "호앙 안 지아라이",
+    "away": "하이퐁",
+    "odds": [
+      2.57,
+      2.98,
+      2.85
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:15",
+    "league": "",
+    "home": "오클리 캐논스",
+    "away": "벤트레이 그린스 SC",
+    "odds": [
+      1.51,
+      4.4,
+      5.4
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:30",
+    "league": "",
+    "home": "Spring Hills (Wom)",
+    "away": "Melbourne Victory NPL (Wom)",
+    "odds": [
+      2.28,
+      3.73,
+      2.72
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:30",
+    "league": "",
+    "home": "엘섬 레드백스 FC",
+    "away": "노스코트 시티 FC",
+    "odds": [
+      2.95,
+      3.83,
+      2.11
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:30",
+    "league": "",
+    "home": "브라운슈바이크 유벤투스 FC",
+    "away": "노스 선샤인 이글스 SC",
+    "odds": [
+      1.44,
+      5.5,
+      5.1
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:30",
+    "league": "",
+    "home": "퀸즐랜드 라이온스 (여자)",
+    "away": "사우스 유나이티드 FC NPL (여자)",
+    "odds": [
+      1.025,
+      13,
+      41
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:30",
+    "league": "호주, 퀸즈랜드 프리미어 리그 1",
+    "home": "브리즈번 스트라이커스 FC",
+    "away": "St George Willawong FC",
+    "odds": [
+      1.45,
+      5.9,
+      4.7
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "19:30",
+    "league": "호주, 퀸즈랜드 프리미어 리그 1",
+    "home": "카팔라바 FC",
+    "away": "노스 스타 FC",
+    "odds": [
+      2.59,
+      3.9,
+      2.31
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "20:00",
+    "league": "",
+    "home": "베이스워터 시티 SC",
+    "away": "퍼스 SC",
+    "odds": [
+      2.01,
+      4.2,
+      2.97
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "20:00",
+    "league": "중국, 리그2",
+    "home": "Shandong Taishan FC B",
+    "away": "칭다오 레드 라이온즈 FC",
+    "odds": [
+      2,
+      2.97,
+      4.2
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "20:00",
+    "league": "케냐, 프리미어 리그",
+    "home": "투스커 FC",
+    "away": "마라 슈가 FC",
+    "odds": [
+      2.3,
+      2.88,
+      3.41
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "20:00",
+    "league": "베트남, V - 리그",
+    "home": "Ninh Binh FC",
+    "away": "하노이 FC",
+    "odds": [
+      2.63,
+      3.45,
+      2.48
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "20:30",
+    "league": "중국, 리그2",
+    "home": "Hangzhou Linping Wuyue FC",
+    "away": "Guangzhou Alpha",
+    "odds": [
+      4.3,
+      3.03,
+      1.96
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "20:30",
+    "league": "인도, 인도 슈퍼 리그",
+    "home": "노스이스트 유나이티드 FC",
+    "away": "FC 고아",
+    "odds": [
+      3.05,
+      3.18,
+      2.31
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "20:30",
+    "league": "싱가포르, 프리미어 리그",
+    "home": "탐파인스 로버스 FC",
+    "away": "영 라이온스 FC",
+    "odds": [
+      1.07,
+      13,
+      17
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "20:35",
+    "league": "중국, 리그2",
+    "home": "Chengdu Rongcheng FC B",
+    "away": "Ganzhou Ruishi FC",
+    "odds": [
+      1.54,
+      3.74,
+      6.3
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "21:00",
+    "league": "인도네시아, 슈퍼리그",
+    "home": "페르시브 반둥",
+    "away": "아레마 FC",
+    "odds": [
+      1.23,
+      5.7,
+      11
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "21:00",
+    "league": "태국, 태국 리그",
+    "home": "수코타이 FC",
+    "away": "랏차부리 FC",
+    "odds": [
+      3.67,
+      3.65,
+      1.89
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "21:30",
+    "league": "이스라엘, U19 청소년 리그",
+    "home": "하포엘 페타 티크바 U19",
+    "away": "하포엘 텔 아비브 U19",
+    "odds": [
+      19,
+      19,
+      0
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "21:30",
+    "league": "우크라이나, VBET 프리미어리그",
+    "home": "콜로스 코발룝카",
+    "away": "SC Poltava",
+    "odds": [
+      1.21,
+      5.8,
+      13
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:00",
+    "league": "인도, I-리그",
+    "home": "라자스탄 유나이티드 FC",
+    "away": "스리니디 데칸 FC",
+    "odds": [
+      2.25,
+      3.23,
+      2.98
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:00",
+    "league": "",
+    "home": "MS Kafr Qasem",
+    "away": "Hapoel Hadera FC",
+    "odds": [
+      1.96,
+      3.3,
+      3.62
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:00",
+    "league": "",
+    "home": "마카비 페타 티크바",
+    "away": "하포엘 크파르 샬렘",
+    "odds": [
+      1.43,
+      4.6,
+      5.7
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:00",
+    "league": "",
+    "home": "하포엘 아풀라 FC",
+    "away": "모디인 FC",
+    "odds": [
+      2.25,
+      3.3,
+      3.06
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:00",
+    "league": "",
+    "home": "하포엘 라나나 FC",
+    "away": "FC 나사렛 일릿",
+    "odds": [
+      2.52,
+      2.98,
+      2.8
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:00",
+    "league": "",
+    "home": "마카비 카빌리오 자파",
+    "away": "Hapoel Acre FC",
+    "odds": [
+      2.05,
+      3.41,
+      3.23
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:00",
+    "league": "우크라이나, 퍼스트 리그",
+    "home": "FC Leviy Bereg",
+    "away": "FC 포딜랴 흐멜니츠키",
+    "odds": [
+      1.23,
+      5.9,
+      11
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:55",
+    "league": "",
+    "home": "디바 알-히스엔 SC",
+    "away": "알 아라비 움 알 쿠와인",
+    "odds": [
+      1.82,
+      3.65,
+      3.98
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:55",
+    "league": "",
+    "home": "에미리츠 클럽",
+    "away": "Masfut SCC",
+    "odds": [
+      1.67,
+      3.94,
+      4.5
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:55",
+    "league": "",
+    "home": "Majd FC",
+    "away": "Al-Thaid",
+    "odds": [
+      8.3,
+      5,
+      1.33
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:55",
+    "league": "",
+    "home": "Al-Jazira Al-Hamra",
+    "away": "Al Hamriyah",
+    "odds": [
+      3.09,
+      3.63,
+      2.1
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "22:55",
+    "league": "",
+    "home": "알 푸자이라 SC",
+    "away": "Al Ittifaq FC",
+    "odds": [
+      1.76,
+      3.82,
+      4.1
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "23:00",
+    "league": "불가리아, 세컨드 리그",
+    "home": "FC 얀트라 2019 가브로보",
+    "away": "FK 스파르타크 1919 플레벤",
+    "odds": [
+      2019,
+      1919,
+      1.44
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "23:00",
+    "league": "이집트, 프리미어 리그",
+    "home": "파르코 FC",
+    "away": "엘 구나 FC",
+    "odds": [
+      2.74,
+      2.7,
+      2.82
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "23:00",
+    "league": "이집트, 프리미어 리그",
+    "home": "네셔널 뱅크 FC",
+    "away": "ZED FC",
+    "odds": [
+      2.23,
+      2.69,
+      3.71
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "23:00",
+    "league": "",
+    "home": "CS Sanatatea Cluj",
+    "away": "CSM Unirea Alba Iulia",
+    "odds": [
+      4.1,
+      4,
+      1.71
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "23:00",
+    "league": "우즈베키스탄, 슈퍼리그",
+    "home": "Xorazm Urganch",
+    "away": "FK 네프치 페르가나",
+    "odds": [
+      7,
+      3.86,
+      1.45
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "23:00",
+    "league": "우즈베키스탄, 슈퍼리그",
+    "home": "키질쿰 자라프숀",
+    "away": "코칸트 1912",
+    "odds": [
+      1912,
+      2.95,
+      2.99
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "23:30",
+    "league": "",
+    "home": "헤르만슈타트",
+    "away": "AFK 미에르쿠레아치우크",
+    "odds": [
+      1.66,
+      3.66,
+      4.7
+    ]
+  },
+  {
+    "site": "x10x10",
+    "time": "23:30",
+    "league": "",
+    "home": "Superliga 2025/2026",
+    "away": "",
+    "odds": [
+      2025,
+      2026,
+      1
+    ]
+  }
+]

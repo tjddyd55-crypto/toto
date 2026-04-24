@@ -1,0 +1,14 @@
+{
+  "watch": [
+    "main.js",
+    "preload.js",
+    "renderer.js",
+    "src"
+  ],
+  "ext": "js,json,html",
+  "ignore": [
+    "node_modules",
+    "dist"
+  ],
+  "exec": "electron ."
+}

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toto Crawler</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      #app {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        min-height: 100vh;
+      }
+      #sidebar {
+        border-right: 1px solid #ddd;
+        padding: 12px;
+        background: #fafafa;
+      }
+      #content {
+        padding: 16px;
+      }
+      .menu-btn {
+        width: 100%;
+        text-align: left;
+        padding: 10px;
+        margin-bottom: 8px;
+        border: 1px solid #ccc;
+        background: #fff;
+        cursor: pointer;
+      }
+      .menu-btn.active {
+        background: #e9f2ff;
+        border-color: #7ea8e8;
+      }
+      .toolbar {
+        display: flex;
+        gap: 8px;
+        margin: 12px 0;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      #urlInput {
+        width: 480px;
+        max-width: 100%;
+      }
+      .section {
+        border: 1px solid #ddd;
+        padding: 12px;
+        margin-top: 12px;
+        border-radius: 6px;
+        background: #fff;
+      }
+      .section h3 {
+        margin: 0 0 10px 0;
+      }
+      .list {
+        max-height: 240px;
+        overflow: auto;
+        border: 1px solid #eee;
+        padding: 8px;
+        background: #fcfcfc;
+      }
+      .item {
+        padding: 8px;
+        border: 1px solid #eee;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        background: #fff;
+      }
+      .item button {
+        margin-top: 8px;
+      }
+      #resultBox {
+        margin-top: 12px;
+        white-space: pre-wrap;
+        background: #111;
+        color: #ddd;
+        padding: 12px;
+        border-radius: 6px;
+        max-height: 320px;
+        overflow: auto;
+      }
+      #detailModal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+      #detailPanel {
+        width: 80vw;
+        max-height: 80vh;
+        background: #fff;
+        border-radius: 8px;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+      }
+      #detailText {
+        white-space: pre-wrap;
+        overflow: auto;
+        border: 1px solid #ddd;
+        padding: 8px;
+        flex: 1;
+      }
+      #versionTop {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 10px;
+      }
+      #runStatus {
+        font-size: 13px;
+        padding: 4px 8px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        background: #f7f7f7;
+        color: #444;
+      }
+      #runStatus.running {
+        background: #fff7e6;
+        border-color: #f5c26b;
+        color: #8a5a00;
+      }
+      #runStatus.done {
+        background: #edf9ef;
+        border-color: #89d09b;
+        color: #1f6b33;
+      }
+      #runStatus.error {
+        background: #fdeeee;
+        border-color: #e39a9a;
+        color: #8b1f1f;
+      }
+      #apiFinderLogBox {
+        width: 100%;
+        min-height: 320px;
+        resize: vertical;
+        font-family: Consolas, monospace;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <aside id="sidebar">
+        <button id="menuCrawl" class="menu-btn active" type="button">기존 크롤링</button>
+        <button id="menuInspector" class="menu-btn" type="button">데이터 탐색 (Inspector)</button>
+        <button id="menuApiFinder" class="menu-btn" type="button">API 탐지기 (API Finder)</button>
+        <button id="menuSavedSites" class="menu-btn" type="button">저장된 사이트</button>
+      </aside>
+      <main id="content">
+        <div id="versionTop"></div>
+        <h1>Toto Crawler</h1>
+        <div class="toolbar">
+          <input id="urlInput" type="text" placeholder="URL을 입력하세요" />
+          <input id="siteNameInput" type="text" placeholder="사이트 이름" />
+          <button id="runBtn" type="button">실행</button>
+          <button id="saveSiteBtn" type="button">저장</button>
+          <span id="runStatus">대기중</span>
+        </div>
+
+        <div id="crawlView">
+          <pre id="resultBox"></pre>
+        </div>
+
+        <div id="inspectorView" style="display:none;">
+          <div class="toolbar">
+            <label><input id="saveLogToggle" type="checkbox" /> 로그 저장</label>
+            <label><input id="jsonOnlyToggle" type="checkbox" /> JSON만 보기</label>
+          </div>
+          <div class="toolbar">
+            <label><input id="decimalOnlyToggle" type="checkbox" checked /> 소수점만 보기</label>
+            <label><input id="includeIntegerToggle" type="checkbox" /> 정수 포함</label>
+            <label><input id="removeSameToggle" type="checkbox" checked /> 동일값 제거</label>
+            <label><input id="useRangeToggle" type="checkbox" checked /> 범위 필터 사용</label>
+            <label>최소값: <input id="minFilter" type="number" step="0.1" value="1.2" /></label>
+            <label>최대값: <input id="maxFilter" type="number" step="0.1" value="10" /></label>
+            <button id="applyFilterBtn" type="button">필터 적용</button>
+            <button id="runTeamMatchBtn" type="button">팀 매칭 실행</button>
+            <button id="runCompareBtn" type="button">경기 비교 실행</button>
+            <label><input id="minSitesToggle" type="checkbox" checked /> 2개 사이트 이상만</label>
+            <label><input id="bigDiffToggle" type="checkbox" /> 배당 차이 큰 경기만</label>
+            <label>차이 기준: <input id="diffThresholdInput" type="number" step="0.1" value="0.5" /></label>
+          </div>
+
+          <section class="section">
+            <h3>[1] 페이지 정보</h3>
+            <pre id="pageInfoBox"></pre>
+          </section>
+
+          <section class="section">
+            <h3>[2] 숫자 후보</h3>
+            <div id="numberCandidatesBox" class="list"></div>
+          </section>
+
+          <section class="section">
+            <h3>[3] 승무패 후보 (전체)</h3>
+            <div id="oddsCandidatesBox" class="list"></div>
+          </section>
+
+          <section class="section">
+            <h3>[4] 승무패 필터링 결과 (진짜)</h3>
+            <div id="oddsFilteredBox" class="list"></div>
+          </section>
+
+          <section class="section">
+            <h3>[5] 중복 제거 결과</h3>
+            <div id="dedupedValuesBox" class="list"></div>
+          </section>
+
+          <section class="section">
+            <h3>[6] 고신뢰 승무패</h3>
+            <div id="trustedOddsBox" class="list"></div>
+          </section>
+
+          <section class="section">
+            <h3>[7] 의심 response 목록</h3>
+            <div id="suspiciousResponsesBox" class="list"></div>
+          </section>
+
+          <section class="section">
+            <h3>[8] 팀 매칭 결과</h3>
+            <div id="teamMatchBox" class="list"></div>
+          </section>
+
+          <section class="section">
+            <h3>[9] 경기 비교 결과</h3>
+            <div id="matchCompareBox" class="list"></div>
+          </section>
+
+          <section class="section">
+            <h3>[10] 최종 경기 데이터</h3>
+            <div id="finalMatchDataBox" class="list"></div>
+          </section>
+        </div>
+
+        <div id="savedSitesView" style="display:none;">
+          <section class="section">
+            <h3>저장된 사이트 목록</h3>
+            <div id="savedSitesList" class="list"></div>
+          </section>
+        </div>
+
+        <div id="apiFinderView" style="display:none;">
+          <section class="section">
+            <h3>API 탐지기 (API Finder)</h3>
+            <div class="toolbar">
+              <input id="apiFinderUrlInput" type="text" placeholder="URL 입력" />
+              <input id="apiFinderKeywordInput" type="text" placeholder="키워드 필터(선택)" />
+              <button id="apiFinderRunBtn" type="button">탐지 시작</button>
+            </div>
+            <textarea id="apiFinderLogBox" readonly></textarea>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <div id="detailModal">
+      <div id="detailPanel">
+        <div class="toolbar">
+          <strong>Response 전체 내용</strong>
+          <button id="closeModalBtn" type="button">닫기</button>
+        </div>
+        <pre id="detailText"></pre>
+      </div>
+    </div>
+    <script src="./renderer.js"></script>
+  </body>
+</html>
