@@ -200,6 +200,7 @@
       const parsers = await window.api.getParsers();
       const select = getEl("parserKeySelect");
       if (!select || !Array.isArray(parsers)) return;
+      const currentValue = select.value || DEFAULT_PARSER_KEY;
       select.innerHTML = "";
       for (const parser of parsers) {
         const option = document.createElement("option");
@@ -207,7 +208,55 @@
         option.textContent = `${parser.name} (${parser.key})`;
         select.appendChild(option);
       }
+      select.value = currentValue;
     } catch (_) {}
+  }
+
+  function setBox(id, value) {
+    const box = getEl(id);
+    if (!box) return;
+    box.innerHTML = "";
+    const item = document.createElement("div");
+    item.className = "item";
+    item.textContent = typeof value === "string" ? value : JSON.stringify(value, null, 2);
+    box.appendChild(item);
+  }
+
+  function renderListBox(id, items, mapper) {
+    const box = getEl(id);
+    if (!box) return;
+    box.innerHTML = "";
+    const list = Array.isArray(items) ? items : [];
+    const summary = document.createElement("div");
+    summary.className = "item";
+    summary.textContent = `count: ${list.length}`;
+    box.appendChild(summary);
+    list.slice(0, 300).forEach((item, index) => {
+      const row = document.createElement("div");
+      row.className = "item";
+      row.textContent = mapper ? mapper(item, index) : JSON.stringify(item, null, 2);
+      box.appendChild(row);
+    });
+  }
+
+  function renderInspectorResult(result) {
+    if (!result || !result.success) return;
+    setBox("pageInfoBox", {
+      url: result.pageInfo?.url || "",
+      title: result.pageInfo?.title || "",
+      siteName: result.siteName || result.pageInfo?.siteName || "",
+      parserKey: result.parserKey || result.pageInfo?.parserKey || "",
+      count: result.count || 0,
+    });
+    renderListBox("numberCandidatesBox", result.rawValues || result.numberCandidates || []);
+    renderListBox("oddsCandidatesBox", result.oddsCandidates || []);
+    renderListBox("oddsFilteredBox", result.oddsFiltered || []);
+    renderListBox("dedupedValuesBox", result.dedupedOdds || result.rawValues || []);
+    renderListBox("trustedOddsBox", result.rawValues || [], (item) => JSON.stringify({ odds: item.odds, context: item.context }, null, 2));
+    renderListBox("suspiciousResponsesBox", result.oddsCandidateResponses || []);
+    renderListBox("teamMatchBox", result.matches || [], (match) => `${match.time || ""} | ${match.home || ""} vs ${match.away || ""} | ${Array.isArray(match.odds) ? match.odds.join(" / ") : ""}`);
+    renderListBox("matchCompareBox", []);
+    renderListBox("finalMatchDataBox", result.matches || [], (match) => `${match.site || ""} | ${match.time || ""} | ${match.home || ""} vs ${match.away || ""} | ${Array.isArray(match.odds) ? match.odds.join(" / ") : ""}`);
   }
 
   function renderProfilesList() {
@@ -254,23 +303,39 @@
     });
   }
 
-  async function runProfileInspect(config) {
-    const result = await window.api.inspect({
-      url: config.url,
-      saveLog: getEl("saveLogToggle") ? getEl("saveLogToggle").checked : false,
-      siteConfig: config,
-    });
+  function updateValidationFromResult(config, result) {
     const updated = normalizeSiteConfig({
       ...config,
       lastValidation: {
-        status: result && result.count > 0 ? "ok" : "empty",
+        status: result && Number(result.count || 0) > 0 ? "ok" : "empty",
         matchCount: Number(result?.count || 0),
         testedAt: nowIso(),
-        message: result && result.count > 0 ? "정상 추출" : "추출 결과 없음",
+        message: result && Number(result.count || 0) > 0 ? "정상 추출" : "추출 결과 없음",
       },
     });
     upsertSiteConfig(updated);
-    return result;
+    renderProfilesList();
+    return updated;
+  }
+
+  function patchInspectApi() {
+    if (!window.api || !window.api.inspect || window.api.inspect.__siteProfilePatched) return;
+    const originalInspect = window.api.inspect.bind(window.api);
+    const patchedInspect = async (payload) => {
+      const config = buildCurrentSiteConfig();
+      const nextPayload = {
+        ...(payload || {}),
+        siteConfig: (payload && payload.siteConfig) || config,
+      };
+      const result = await originalInspect(nextPayload);
+      renderInspectorResult(result);
+      if (nextPayload.url || config.url) {
+        updateValidationFromResult(config, result);
+      }
+      return result;
+    };
+    patchedInspect.__siteProfilePatched = true;
+    window.api.inspect = patchedInspect;
   }
 
   function wireButtons() {
@@ -282,29 +347,6 @@
         applyConfigToInputs(saved);
         renderProfilesList();
       });
-    }
-
-    const runBtn = getEl("runBtn");
-    if (runBtn && !runBtn.dataset.profileExt) {
-      runBtn.dataset.profileExt = "1";
-      runBtn.addEventListener("click", async (event) => {
-        const mode = getEl("collectorModeSelect")?.value || "text";
-        if (mode !== "text") return;
-        event.stopImmediatePropagation();
-        const config = buildCurrentSiteConfig();
-        const status = getEl("runStatus");
-        const resultBox = getEl("resultBox");
-        try {
-          if (status) status.textContent = "프로필 분석중...";
-          const result = await runProfileInspect(config);
-          if (resultBox) resultBox.textContent = JSON.stringify(result, null, 2);
-          if (status) status.textContent = "완료";
-          renderProfilesList();
-        } catch (error) {
-          if (status) status.textContent = "오류";
-          if (resultBox) resultBox.textContent = error?.stack || String(error);
-        }
-      }, true);
     }
 
     const menuSavedSites = getEl("menuSavedSites");
@@ -321,6 +363,7 @@
       const current = findCurrentConfig();
       if (current) applyConfigToInputs(current);
     });
+    patchInspectApi();
     wireButtons();
     renderProfilesList();
   }
@@ -331,6 +374,7 @@
     buildCurrentSiteConfig,
     applyConfigToInputs,
     renderProfilesList,
+    renderInspectorResult,
   };
 
   if (document.readyState === "loading") {
