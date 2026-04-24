@@ -96,6 +96,16 @@
     };
   }
 
+  function validationFromResult(result) {
+    const count = Number(result?.count ?? (Array.isArray(result?.matches) ? result.matches.length : 0));
+    return {
+      status: count > 0 ? "ok" : "empty",
+      matchCount: count,
+      testedAt: nowIso(),
+      message: count > 0 ? "정상 추출" : "추출 결과 없음",
+    };
+  }
+
   function mergeConfig(existing, incoming) {
     const a = normalizeSiteConfig(existing || {});
     const b = normalizeSiteConfig(incoming || {});
@@ -158,6 +168,10 @@
     const parserKey = getEl("parserKeySelect")?.value || base.collector?.parserKey || DEFAULT_PARSER_KEY;
     const repeatCount = Number(getEl("repeatCountInput")?.value || base.collector?.repeatCount || 5);
     const waitMs = Number(getEl("waitMsInput")?.value || base.collector?.waitMs || 1000);
+    const lastResult = window.__lastInspectorResult;
+    const lastValidation = lastResult && Number(lastResult.count || 0) >= 0
+      ? validationFromResult(lastResult)
+      : base.lastValidation;
 
     return normalizeSiteConfig({
       ...base,
@@ -177,6 +191,7 @@
         keywordFilter: getEl("apiFinderKeywordInput")?.value || base.api?.keywordFilter || "",
       },
       filters: getFilterState(),
+      lastValidation,
     });
   }
 
@@ -285,6 +300,7 @@
 
   function renderInspectorResult(result) {
     if (!result || !result.success) return;
+    window.__lastInspectorResult = result;
     setBox("pageInfoBox", {
       url: result.pageInfo?.url || "",
       title: result.pageInfo?.title || "",
@@ -350,14 +366,10 @@
   }
 
   function updateValidationFromResult(config, result) {
+    window.__lastInspectorResult = result;
     const updated = normalizeSiteConfig({
       ...config,
-      lastValidation: {
-        status: result && Number(result.count || 0) > 0 ? "ok" : "empty",
-        matchCount: Number(result?.count || 0),
-        testedAt: nowIso(),
-        message: result && Number(result.count || 0) > 0 ? "정상 추출" : "추출 결과 없음",
-      },
+      lastValidation: validationFromResult(result),
     });
     const saved = upsertSiteConfig(updated);
     renderProfilesList();
