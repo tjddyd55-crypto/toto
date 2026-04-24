@@ -5,6 +5,7 @@ const { autoUpdater } = require("electron-updater");
 const { crawlUrl } = require("./crawler");
 const { inspectUrl } = require("./inspector");
 const { runApiFinder } = require("./api-finder");
+const { listParsers } = require("./parsers");
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -61,9 +62,13 @@ ipcMain.handle("app-version", async () => {
   return app.getVersion();
 });
 
+ipcMain.handle("parser-list", async () => {
+  return listParsers();
+});
+
 ipcMain.handle("inspect", async (_, payload) => {
-  const { url, saveLog } = payload || {};
-  const result = await inspectUrl(url);
+  const { url, saveLog, siteConfig } = payload || {};
+  const result = await inspectUrl(url, siteConfig || {});
 
   if (saveLog) {
     const stamp = new Date().toISOString().replace(/[^\d]/g, "").slice(0, 14);
