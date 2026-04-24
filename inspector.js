@@ -173,10 +173,12 @@ async function inspectUrl(targetUrl, siteConfig = {}) {
     }
 
     const title = await page.title();
+    let latestBodyText = "";
     allMatches = [];
 
     for (let i = 0; i < repeatCount; i += 1) {
       const text = await page.innerText("body");
+      latestBodyText = text;
       const matches = parseMatchesFromText(text);
 
       console.log("RUN", i, "COUNT:", matches.length);
@@ -209,6 +211,19 @@ async function inspectUrl(targetUrl, siteConfig = {}) {
       odds: match.odds,
     }));
 
+    const rawValues = finalMatches.map((item, index) => ({
+      odds: item.odds,
+      sourceType: "text",
+      sourceRef: targetUrl,
+      position: index,
+      context: `${item.time}\n${item.home} vs ${item.away}\n${item.odds ? item.odds.join(" ") : ""}`,
+    }));
+
+    const oddsCandidates = finalMatches.map((item) => item.odds);
+    const oddsFiltered = finalMatches.map((item) => item.odds);
+    const oddsFilteredDetails = rawValues;
+    const dedupedOdds = rawValues;
+
     console.log("FINAL COUNT:", finalMatches.length);
 
     fs.writeFileSync(
@@ -233,26 +248,19 @@ async function inspectUrl(targetUrl, siteConfig = {}) {
         title,
         siteName,
         parserKey,
+        matchCount: finalMatches.length,
       },
       html: "",
-      bodyText: "",
+      bodyText: latestBodyText,
       responses: [],
-      numberCandidates: [],
-      oddsCandidates: [],
-      oddsFiltered: [],
-      rawValues: finalMatches.map((item, index) => ({
-        odds: item.odds,
-        sourceType: "text",
-        sourceRef: targetUrl,
-        position: index,
-        context: `${item.time}\n${item.home} vs ${item.away}\n${
-          item.odds ? item.odds.join(" ") : ""
-        }`,
-      })),
-      oddsFilteredDetails: [],
-      dedupedOdds: [],
+      numberCandidates: rawValues,
+      oddsCandidates,
+      oddsFiltered,
+      rawValues,
+      oddsFilteredDetails,
+      dedupedOdds,
       keywordResponses: [],
-      oddsCandidateResponses: [],
+      oddsCandidateResponses: rawValues,
     };
   } finally {
     await browser.close();
